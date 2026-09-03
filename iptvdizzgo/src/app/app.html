@@ -1,0 +1,36 @@
+@if (view() === 'splash') {
+  <main class="splash-page"><img src="assets/logo-onedxd.svg" alt="One DxD" /><span>from Dizzgo</span></main>
+} @else if (view() === 'providers') {
+  <main class="providers-page"><section class="providers-inner">
+    <p class="eyebrow">DIZZGO TV</p><h1>Elige tu espacio de entretenimiento</h1>
+    <div class="provider-list">@for (item of providers; track item.id) {
+      <button class="provider-card" type="button" (click)="openProvider(item)">
+        <span class="provider-art"><img [src]="item.logo" [alt]="item.name" /></span><strong>{{ item.name }}</strong>
+        <small>{{ item.requiresAuth ? 'Acceso privado' : 'Acceso libre' }}</small>
+      </button>
+    }</div>
+  </section></main>
+} @else if (view() === 'login') {
+  <main class="login-page"><button class="icon-button" type="button" (click)="back()" aria-label="Volver">&#8592;</button>
+    <form class="login-card" (ngSubmit)="submitLogin()">
+      <span class="login-mark"><img [src]="provider()?.logo" [alt]="provider()?.name" /></span>
+      <p class="eyebrow">{{ provider()?.name }}</p><h1>Bienvenido</h1><p>Ingresa tus credenciales para acceder.</p>
+      <label>Usuario<input class="input" name="username" [(ngModel)]="credentials.username" autocomplete="username" /></label>
+      <label>Contraseña<input class="input" name="password" type="password" [(ngModel)]="credentials.password" autocomplete="current-password" /></label>
+      @if (error()) { <p class="error-message" role="alert">{{ error() }}</p> }
+      <button class="primary-button" type="submit" [disabled]="loading()">{{ loading() ? 'Verificando...' : 'Iniciar sesión' }}</button>
+    </form>
+  </main>
+} @else if (view() === 'home') {
+  <main class="stage-page"><video class="stage-video" autoplay muted loop playsinline></video><div class="scrim"></div>
+    <button class="icon-button stage-home" type="button" (click)="back()" aria-label="Inicio">⌂</button>
+    @if (provider()?.requiresAuth) { <button class="icon-button stage-logout" type="button" (click)="logout()" aria-label="Cerrar sesión">↪</button> }
+    @if (loading()) { <div class="state"><span class="spinner"></span><p>Obteniendo canales de {{ provider()?.name }}...</p></div> }
+    @else if (error()) { <div class="state"><p class="error-message">{{ error() }}</p><button class="primary-button" (click)="back()">Volver</button></div> }
+    @else if (featured(); as hero) { <div class="stage-content"><section class="hero-copy"><p class="eyebrow">{{ hero.groupTitle || 'Contenido en directo' }}</p><h1>{{ hero.name }}</h1><button class="primary-button" (click)="play(hero)">▶ Ver ahora</button></section>
+      <section class="channel-rail"><h2>Descubrir más contenido</h2><div class="channel-row">@for (channel of channels(); track channel.url) { <button class="channel-card" (click)="play(channel)"><span class="channel-logo">{{ channel.name.charAt(0) }}</span><strong>{{ channel.name }}</strong></button> }</div></section></div> }
+  </main>
+} @else if (view() === 'player') {
+  <main class="player-page"><video class="player-video" controls autoplay playsinline [src]="currentChannel()?.url"></video><header class="player-top"><button class="icon-button" (click)="home()" aria-label="Volver">&#8592;</button><div><p class="eyebrow">{{ provider()?.name }}</p><h1>{{ currentChannel()?.name || 'Reproduciendo' }}</h1></div></header></main>
+}
+ 

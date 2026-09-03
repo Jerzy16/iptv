@@ -1,0 +1,3 @@
+export interface Channel { name: string; url: string; tvgLogo: string; groupTitle: string; }
+export interface Provider { id: string; name: string; logo: string; requiresAuth: boolean; source: { type: string; host: string; }; }
+export const PROVIDERS: Provider[] = [{ id: 'fiberplus', name: 'Fiberplus', logo: 'assets/fiberplus.png', requiresAuth: true, source: { type: 'xtream-api', host: 'http://200.60.97.100:25461' } }];

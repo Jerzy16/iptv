@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import './app/app.css';
+
+:root { font-family: 'Manrope', sans-serif; color: #f5f7fb; background: #090b0f; font-synthesis: none; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { overflow: hidden; background: radial-gradient(circle at 82% 8%, #273447 0, transparent 35%), #090b0f; }
+button, input { font: inherit; }
+button { cursor: pointer; }

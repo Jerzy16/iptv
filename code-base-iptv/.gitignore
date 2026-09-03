@@ -1,0 +1,5 @@
+#Claude
+.claude/
+.env
+proxy/.env
+proxy/node_modules/

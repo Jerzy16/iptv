@@ -2,7 +2,7 @@
 main { min-height: 100%; }
 h1, h2, p { margin: 0; }
 h1, h2 { font-family: 'Space Grotesk', sans-serif; }
-.eyebrow { color: #efeff0; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow { color: #019a1b; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .splash-page, .providers-page, .login-page { display: grid; place-items: center; background: radial-gradient(circle at 50% 35%, #26384b 0, #090b0f 62%); }
 .splash-page img { width: min(280px, 45vw); animation: reveal .8s ease both; }
 .splash-page span { position: absolute; bottom: 2.5rem; color: #718198; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; }

@@ -1,0 +1,12 @@
+<main class="player-page">
+    <video #video class="player-video" controls autoplay playsinline></video>
+    @if (error()) { <p class="player-error" role="alert">{{ error() }}</p> }
+    <header class="player-top">
+        <button class="icon-button" (click)="back()" aria-label="Volver">&#8592;</button>
+        <div>
+            <p class="eyebrow">
+                {{ provider?.name }}</p>
+            <h1>{{ channelName }}</h1>
+        </div>
+    </header>
+</main>

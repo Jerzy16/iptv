@@ -1,0 +1,15 @@
+<main class="providers-page">
+  <section class="providers-inner">
+    <p class="eyebrow">DIZZGO TV</p>
+    <h1>Elige tu espacio de entretenimiento</h1>
+    <div class="provider-list">
+      @for (provider of providers; track provider.id) {
+        <button class="provider-card" appFocusable type="button" (click)="choose(provider)">
+          <span class="provider-art"><img [src]="provider.logo" [alt]="provider.name" /></span>
+          <strong>{{ provider.name }}</strong>
+          <small>{{ provider.requiresAuth ? 'Acceso privado' : 'Acceso libre' }}</small>
+        </button>
+      }
+    </div>
+  </section>
+</main>

@@ -1,0 +1,11 @@
+{
+  "/iptv-api": {
+    "target": "http://200.60.97.100:25461",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "warn",
+    "pathRewrite": {
+      "^/iptv-api": ""
+    }
+  }
+}

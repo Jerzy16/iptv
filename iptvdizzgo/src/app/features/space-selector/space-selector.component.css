@@ -1,0 +1,11 @@
+.providers-page { min-height: 100%; display: grid; place-items: center; padding: 2rem; background: radial-gradient(circle at 50% 35%, #26384b 0, #090b0f 62%); }
+.providers-inner { width: min(960px, 100%); text-align: center; }
+.providers-inner h1 { margin: .65rem 0 3rem; font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 4.2rem); line-height: 1.02; }
+.provider-list { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.provider-card { width: 220px; min-height: 270px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .65rem; color: #f5f7fb; background: #18212e; border: 1px solid #40516a; border-radius: 18px; transition: transform .2s, border-color .2s, background .2s; }
+.provider-card:hover, .provider-card:focus-visible { transform: translateY(-8px); background: #243348; border-color: #c5d8f0; outline: none; }
+.provider-art { width: 122px; height: 122px; display: grid; place-items: center; border-radius: 50%; background: #0d1118; border: 1px solid #40516a; overflow: hidden; }
+.provider-art img { max-width: 74%; max-height: 60%; object-fit: contain; }
+.provider-card strong { font-size: 1.2rem; }
+.provider-card small { color: #91a7c2; }
+@media (max-width: 700px) { .providers-page { padding: 1rem; } .provider-card { width: 160px; min-height: 210px; } .provider-art { width: 90px; height: 90px; } }

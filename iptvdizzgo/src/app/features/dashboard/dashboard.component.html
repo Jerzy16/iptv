@@ -1,0 +1,14 @@
+<main class="stage-page">
+  <div class="stage-backdrop"></div><div class="scrim"></div>
+  <button class="icon-button stage-home" type="button" (click)="logout()" aria-label="Inicio">⌂</button>
+  @if (provider?.requiresAuth) { <button class="icon-button stage-logout" type="button" (click)="logout()" aria-label="Cerrar sesión">↪</button> }
+  @if (loading()) {
+    <div class="state"><app-loading-spinner /><p>Obteniendo canales de {{ provider?.name }}...</p></div>
+  } @else if (error()) {
+    <div class="state"><p class="error-message">{{ error() }}</p><button class="primary-button" (click)="logout()">Volver</button></div>
+  } @else if (featured(); as hero) {
+    <div class="stage-content"><section class="hero-copy"><p class="eyebrow">{{ hero.groupTitle || 'Contenido en directo' }}</p><h1>{{ hero.name }}</h1><button class="primary-button" (click)="play(hero)">▶ Ver ahora</button></section>
+      <section class="channel-rail"><h2>Descubrir más contenido</h2><div class="channel-row">@for (channel of channels(); track channel.url) { <button class="channel-card" (click)="play(channel)"><span class="channel-logo"><img [src]="channel.tvgLogo" [alt]="channel.name" /></span><strong>{{ channel.name }}</strong></button> }</div></section>
+    </div>
+  }
+</main>

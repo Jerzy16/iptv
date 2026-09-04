@@ -1,0 +1,20 @@
+:host { display: block; width: 100%; height: 100%; min-height: 100vh; }
+.stage-page { width: 100%; height: 100%; min-height: 100vh; position: relative; overflow: hidden; background: #000; }
+.stage-backdrop { position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, #1b2b40 0, #07090d 56%); }
+.scrim { position: absolute; inset: 0; background: linear-gradient(90deg, #090b0fee, #090b0f77 42%, transparent 78%), linear-gradient(0deg, #090b0fff, transparent 58%); }
+.icon-button { position: absolute; z-index: 4; top: 2rem; left: 2rem; width: 48px; height: 48px; border: 1px solid #6a7d95; border-radius: 50%; color: #fff; background: #18212ecc; font-size: 1.4rem; }
+.stage-logout { left: auto; right: 2rem; }
+.stage-content { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: end; padding: 3rem; }
+.hero-copy { max-width: 680px; margin-bottom: 3rem; }
+.hero-copy h1 { margin: .4rem 0 1.4rem; font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 6rem); line-height: .98; }
+.primary-button { padding: .85rem 1.4rem; color: #0d1118; background: #d9e7f5; border: 0; border-radius: 8px; font-weight: 800; }
+.channel-rail h2 { margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; }
+.channel-row { display: flex; gap: .8rem; overflow-x: auto; padding-bottom: .5rem; }
+.channel-card { flex: 0 0 150px; min-height: 128px; padding: .8rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7rem; color: #fff; background: #18212ee8; border: 1px solid #40516a; border-radius: 10px; text-align: center; }
+.channel-card:hover, .channel-card:focus-visible { background: #f5f7fb; color: #18212e; outline: none; }
+.channel-logo { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; color: #18212e; background: #d9e7f5; font-size: 1.5rem; font-weight: 700; }
+.channel-logo img { width: 100%; height: 100%; padding: .3rem; object-fit: contain; border-radius: 50%; }
+.channel-card strong { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.state { position: absolute; z-index: 3; inset: 0; display: grid; place-content: center; gap: 1rem; text-align: center; }
+.error-message { color: #ff8585; }
+@media (max-width: 700px) { .stage-content { padding: 1.25rem; } .icon-button { top: 1rem; } .stage-home { left: 1rem; } .stage-logout { right: 1rem; } .hero-copy { margin-bottom: 1.5rem; } }

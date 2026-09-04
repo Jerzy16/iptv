@@ -1,0 +1,7 @@
+:host { display: block; width: 100%; height: 100%; min-height: 100vh; }
+.player-page { width: 100%; height: 100%; min-height: 100vh; position: relative; overflow: hidden; background: #000; }
+.player-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.player-top { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 1rem; padding: 2rem; background: linear-gradient(#000c, transparent); }
+.icon-button { width: 48px; height: 48px; border: 1px solid #6a7d95; border-radius: 50%; color: #fff; background: #18212ecc; font-size: 1.4rem; }
+.player-top h1 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; }
+.player-error { position: absolute; z-index: 3; left: 50%; top: 50%; width: min(520px, 80%); transform: translate(-50%, -50%); padding: 1rem; color: #fff; background: #501d28e8; border: 1px solid #ff8585; border-radius: 8px; text-align: center; }

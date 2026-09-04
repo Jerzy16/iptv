@@ -4,23 +4,36 @@ import { Credentials } from './auth.service';
 @Injectable({ providedIn: 'root' })
 export class IptvService {
   async fetchForProvider(provider: Provider, credentials: Credentials): Promise<Channel[]> {
-    const url = new URL('/player_api.php', provider.source.host);
+    const requestBase = this.getRequestBase(provider);
+    const url = new URL('player_api.php', `${requestBase}/`);
     url.searchParams.set('username', credentials.username);
     url.searchParams.set('password', credentials.password);
     url.searchParams.set('action', 'get_live_streams');
     let response: Response;
     try { response = await fetch(url, { signal: AbortSignal.timeout(15000) }); }
     catch { throw new Error('No se pudo conectar con el servidor IPTV. Verifica que permita CORS.'); }
-    if (!response.ok) throw new Error(`Error al conectar con el servidor IPTV (${response.status}).`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error('El servidor IPTV respondió 404. Verifica usuario, contraseña, host y puerto.');
+      }
+      throw new Error(`Error al conectar con el servidor IPTV (${response.status}).`);
+    }
     const payload: unknown = await response.json();
     if (!Array.isArray(payload)) throw new Error('El servidor IPTV devolvió una respuesta inválida.');
     return payload.map((item: any) => ({
       name: String(item.name || item.stream_name || 'Sin nombre'),
-      url: `${provider.source.host}/live/${encodeURIComponent(credentials.username)}/${encodeURIComponent(credentials.password)}/${item.stream_id}.m3u8`,
+      url: `${requestBase}/live/${encodeURIComponent(credentials.username)}/${encodeURIComponent(credentials.password)}/${item.stream_id}.m3u8?extension=m3u8`,
       tvgLogo: String(item.stream_icon || ''),
       groupTitle: String(item.category_name || item.category_id || ''),
     })).filter((channel) => channel.url.endsWith('.m3u8'));
   }
+
+  private getRequestBase(provider: Provider): string {
+    return typeof window !== 'undefined' && window.location.hostname === 'localhost'
+      ? `${window.location.origin}/iptv-api`
+      : provider.source.host;
+  }
+
   private parse(text: string): Channel[] {
     const clean = text.replace(/^\uFEFF/, '').trim();
     const numeric = clean.split(/\r?\n/);

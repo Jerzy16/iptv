@@ -1,0 +1,14 @@
+<main class="login-page">
+  <app-back-button (back)="routerBack()" />
+  <form class="login-card" (ngSubmit)="submit()">
+    <span class="login-mark"><img [src]="provider?.logo" [alt]="provider?.name" /></span>
+    <p class="eyebrow">{{ provider?.name }}</p>
+    <h1>Bienvenido</h1>
+    <p>Ingresa tus credenciales para acceder.</p>
+    <label>Usuario<input class="input" name="username" [(ngModel)]="username" autocomplete="username" /></label>
+    <label>Contraseña<input class="input" name="password" type="password" [(ngModel)]="password" autocomplete="current-password" /></label>
+    @if (error()) { <p class="error-message" role="alert">{{ error() }}</p> }
+    @if (loading()) { <app-loading-spinner /> }
+    <button class="primary-button" type="submit" [disabled]="loading()">{{ loading() ? 'Verificando...' : 'Iniciar sesión' }}</button>
+  </form>
+</main>
